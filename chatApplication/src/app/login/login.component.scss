@@ -1,0 +1,99 @@
+#loginPage {
+
+    color: white;    
+    align-items: center;
+    height: calc(100vh);
+}
+
+
+.loginPopup {
+    // opacity: 0.5;
+    visibility: visible;
+    transition: 0.25s ease-in;
+    position: fixed;
+    // background-color: rgb(76, 76, 76);
+    // top: 15rem;
+    inset: 0;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.loginBody {
+    justify-content: center;
+    align-items: center;
+    border: 2px solid grey;
+    background-color: #363A3F;
+    opacity: 1;
+    z-index: 20;
+    border-radius: 5px;
+    position: relative;
+    width: 26rem;
+    height: 22rem;
+
+    
+    label {
+        align-self: start;
+    }
+
+    h3 {
+        margin-top: -1rem;
+    }
+
+}
+
+.loginBody form {
+    position: relative;
+    width: 20rem;
+    padding: 0.4rem;
+    display: block;
+    
+    input:not(.submitBtn) {
+        background-color: #2F3338;
+        display: block;
+        width: 80%;
+        margin-bottom: 1rem;
+    }
+
+    input.submitBtn:active {
+        border: 1px solid rgb(184, 250, 255);
+        background:  rgba(11, 210, 245, 0.868);
+        box-shadow: 0 0 8px rgb(104, 240, 255); 
+    }
+
+    input.submitBtn { //temp - will change
+        box-sizing: border-box;
+        background-color:  rgb(121 205 233 / 87%);
+        box-shadow: 0 0 5px rgb(104, 240, 255); 
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: rgb(31, 233, 255);
+        margin-top: 0.4rem;
+        padding: 2px 10px;
+        border: 1px solid rgb(116, 246, 255);
+        border-radius: 4px;
+        transition: background-color 0.2s, box-shadow 0.2s;
+
+        // margin-left: 3.3rem;
+    }
+    
+}
+
+.loginContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.closed {
+    // display: none;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.incorrectNamePass {
+    color: red;
+    font-size: 14px;
+    margin: -4px 0 -9px 0;
+}

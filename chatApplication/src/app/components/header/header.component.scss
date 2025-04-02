@@ -1,0 +1,13 @@
+
+section #header {
+    // background-color: #282b30;
+    border-bottom: 2px solid #00d3e6;
+    // margin-bottom: 2rem;
+
+    height: 4rem;// var(--headerHeight);//from styles.scss
+}
+
+.logoutBtn {
+    position: absolute;
+    right: 0;
+}

@@ -1,0 +1,87 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+:root{
+   --headerHeight: 4.05rem; //so the header height can be accounted for in calculating the height to fit the page  - h-16/4rem
+}
+
+.notVisible { //different than doing display: none since it doesn't shift (it hides rather than not displaying)
+  opacity: 0;
+  visibility: hidden;
+}
+
+.toRegLink, .toLoginLink {
+  color: rgb(0, 110, 255);
+}
+
+.toRegLink:hover, .toLoginLink:hover {
+  color: rgb(0, 132, 255);
+}
+
+.toRegLink:active, .toLoginLink:active {
+  color: rgb(43, 153, 255);
+}
+
+.custBtn { 
+    box-sizing: border-box;
+    box-shadow: 0 0 5px rgb(104, 240, 255); 
+  
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgb(31, 233, 255);
+    // margin-top: 0.5rem;
+    // padding: 2px 10px;
+    border: 1px solid rgb(116, 246, 255);
+    border-radius: 4px;
+    background-color:  rgba(95, 215, 255, 0.674);
+    transition: background-color 0.25s, box-shadow 0.25s;
+  }
+
+.custBtn:hover {
+  background-color: rgb(0, 163, 204);
+  box-shadow: 0 0 8px rgb(104, 240, 255);
+  cursor: pointer;
+}
+
+.custBtn:active {
+  border: 1px solid rgb(184, 250, 255);
+  background:  rgba(11, 210, 245, 0.868);
+  box-shadow: 0 0 8px rgb(104, 240, 255); 
+}
+
+.discBtn { //alt button concept
+  background-color: #161f27;
+  &:hover {
+    background-color: #324759;
+  }
+
+}
+
+.deleteBtn { 
+  box-sizing: border-box;
+  box-shadow: 0 0 5px rgb(255, 104, 104); 
+
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgb(255, 146, 146);
+  // margin-top: 0.5rem;
+  // padding: 2px 10px;
+  border: 1px solid rgb(255, 116, 116);
+  border-radius: 4px;
+  background-color:  rgba(255, 38, 38, 0.674);
+  transition: background-color 0.25s, box-shadow 0.25s, color 0.25s, border 0.25s;
+}
+
+.deleteBtn:hover {
+  background-color: rgba(219, 26, 26, 0.938);
+  box-shadow: 0 0 8px rgb(255, 104, 104);
+  color: rgb(255, 195, 195);
+  border: 1px solid rgb(254, 103, 103);
+  cursor: pointer;
+}
+
+.deleteBtn:active {
+  border: 1px solid rgb(255, 184, 184);
+  background:  rgba(245, 11, 11, 0.868);
+  box-shadow: 0 0 8px rgb(255, 104, 104); 
+}

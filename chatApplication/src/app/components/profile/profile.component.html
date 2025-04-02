@@ -1,0 +1,127 @@
+<div class="profileHolder flex flex-col items-center gap-5">
+  <!--the exact logic may need adjustment-->
+  @if (!editing) {
+  <!--so it switches between the default profile view and the profile edit form-->
+
+  <h1 class="text-white text-center text-4xl">Profile</h1>
+  <div class="profileBody flex flex-col items-center">
+    <div id="profileImg" class="relative">
+      <img
+        src="testing-placeholder.png"
+        alt="profilePic"
+        class="rounded"
+      /><!--needs to be replaced to show current pic-->
+    </div>
+    <h3>{{ userData()?.user?.username }}</h3>
+    <i>{{ userData()?.user?.email }}</i>
+    <div id="ageGender">
+      @if (userData()?.user?.age) {
+      <p>{{ userData()?.user?.age }}</p>
+      }
+
+      <!-- <p>Gender</p> -->
+    </div>
+    <!-- <p>Country</p> -->
+    <!-- <p id="bioText">{{ userData()?.user?.bio }}</p> -->
+    <!--id bioText to separate from the input id "bio"-->
+  </div>
+  <!-- <button id="editBtn" class="custBtn" (click)="edit()">Edit</button> -->
+  } @else {
+
+  <h1 id="editHead" class="text-white text-center text-4xl">Edit</h1>
+  <form
+    methods="POST"
+    class="flex flex-col text-white"
+    [formGroup]="userForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="formGroup">
+      <!-- <label for="profilePic">Profile Picture</label> -->
+      <input
+        id="profilePic"
+        name="profilePic"
+        type="file"
+        accept="image/*"
+      /><!--needs formControlName-->
+    </div>
+    <div class="formGroup">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        required
+        class="border rounded"
+        formControlName="name"
+      />
+    </div>
+    <div class="formGroup">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        required
+        class="border rounded"
+        formControlName="email"
+      />
+    </div>
+    <div class="flex flex-row gap-2">
+      <div class="flex flex-col w-15">
+        <label for="age">Age</label>
+        <input
+          type="number"
+          name="age"
+          id="age"
+          required
+          class="border rounded"
+          formControlName="age"
+        />
+      </div>
+      <div class="flex flex-col">
+        <label for="gender">Gender</label>
+        <select name="gender" id="gender" formControlName="gender">
+          <!--optional-->
+          <option disabled hidden selected>Select One</option>
+          <!--disabled & hidden prevent it defaulting to the first option-->
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+          <option>Prefer not to say</option>
+          <!--maybe have it if this is picked (also for register) it enters as Unknown or N/A so it displays better-->
+        </select>
+      </div>
+    </div>
+    <div class="formGroup">
+      <label for="country">Country</label>
+      <input
+        type="text"
+        class="border rounded"
+        id="country"
+        name="country"
+        formControlName="country"
+      />
+    </div>
+    <div class="formGroup">
+      <label for="bio">Bio</label>
+      <textarea
+        rows="6"
+        id="bio"
+        class="border rounded"
+        name="bio"
+        formControlName="bio"
+      ></textarea>
+    </div>
+    <div class="flex justify-center gap-3">
+      <button type="submit" class="custBtn p-2 mt-1">Submit</button>
+      <button
+        id="cancelEdit"
+        class="custBtn p-2 mt-1"
+        (click)="cancelEditing()"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+  }
+</div>

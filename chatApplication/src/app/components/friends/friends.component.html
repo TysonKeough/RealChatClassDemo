@@ -1,0 +1,124 @@
+<section id="friendsSec" class="border-r">
+  <div class="friendsTaskbar">
+    <!-- main taskbar -->
+    <!-- <div> -->
+    <!-- search bar -->
+    <!--  -->
+    <div class="pt-4 pb-4">
+      <div class="text-white border-b pb-4">
+        <div id="searchCon" class="flex gap-3 pl-0.5">
+          <input
+            class="border rounded bg-blue-900"
+            type="search"
+            placeholder="Find friends"
+            #friendName
+          />
+          <!-- <input class="p-1 rounded text-white bg-blue-400" type="submit" /> -->
+          <button
+            class="custBtn p-1"
+            type="submit"
+            (click)="sendFriendRequest(friendName.value)"
+          >
+            Search
+          </button>
+          <!-- display response of friend request that was sent. Either "invalid" or "request sent" -->
+        </div>
+        <div id="friendReqStatus" [class.animateOut]="animateOut">
+          @if(requestSuccess == null ){<!--this will need changing  - this is only temp -->
+          <p></p>
+          } @else if (!requestSuccess) {
+          <p class="requestFailed">Invalid</p>
+          } @else{
+          <p class="requestSuccess">Request sent</p>
+          }
+        </div>
+      </div>
+    </div>
+    <!-- task bar of some buttons ? -->
+    <div class="flex gap-3 justify-between px-4 pb-4 border-b">
+      <a (click)="chatToLogo()"> <button class="custBtn ml-0 p-1">Back</button> </a>
+      <!--changed from div to button-->
+      <!--Placeholder?-->
+      <button class="custBtn p-1" (click)="toggleFriendRequests()">
+        Requests
+      </button>
+    </div>
+
+    <!-- GET friends here to a list -->
+    @if (!isFriendRequestOn) {
+
+    <div id="friendsBottom">
+      <div class="w-full text-center">
+        <h2 class="text-2xl">Friends</h2>
+      </div>
+      <div id="friendsList">
+        <!--add friends here?-->
+
+        <!-- Mock friendslist to test styling - each user should have an image (either one they chose, otherwise default) and username-->
+        <!-- scrollable after 8 friend items-->
+
+        @for (friend of friendList; track $index) {
+        <div class="friendItem flex justify-between">
+          <div
+            class="flex items-center gap-3"
+            (click)="getFriendChatRoom(friend._id, friend.username)"
+          >
+            <img src="defaultImg.PNG" alt="profilePic" />
+            <span class="username">{{ friend.username }}</span>
+          </div>
+          <!-- <button
+            class="deleteBtn p-1 bg-red-800"
+            (click)="removeFriend(friend._id)"
+          >
+            Delete
+          </button> -->
+
+           @for (item of friend.chatRooms; track $index) {
+
+            @if (this.userDataFriends?.user?._id === friend.chatRooms[$index].userId) {
+              @if(friend.chatRooms[$index].notifications === 0) {
+                <div></div>
+              }
+              @else {
+                <div class="notificationIcon p-1 rounded bg-green-800 text-white font-bold">
+                  {{ friend.chatRooms[$index].notifications }}
+                  </div>
+              }
+              
+              } 
+            }
+            
+          
+          
+        </div>
+        } @if (friendList[0] == null) {
+        <div class="friendItem">
+          <span class="username">You have no friends...</span>
+        </div>
+        }
+      </div>
+    </div>
+
+    } @else{
+    <div id="friendRequestBottom">
+      <div class="w-full text-center">
+        <h2 class="text-2xl">Friend Requests</h2>
+      </div>
+      <div id="friendRequestList">
+        @for (friendRequest of friendRequests; track $index) {
+        <div class="friendItem">
+          <img src="defaultImg.PNG" alt="profilePic" />
+          <span class="username">{{ friendRequest.username }}</span>
+          <button class="custBtn p-1" (click)="acceptFriend($index)">
+            Accept
+          </button>
+          <button class="custBtn p-1" (click)="declineFriend($index)">
+            Decline
+          </button>
+        </div>
+        }
+      </div>
+    </div>
+    }
+  </div>
+</section>
